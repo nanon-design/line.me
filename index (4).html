@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Smile Lab Dental — เว็บตัวอย่าง</title>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#13222b;--bg2:#1b303b;--card:#223a47;--ink:#f3efe4;--mute:#b9c9cf;--glow:#ffe2a3;--mint:#8fd3c4;--line:#06c755;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:dark}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{background:var(--bg);color:var(--ink);font-family:'Kanit',system-ui,sans-serif;font-weight:300;line-height:1.7;overflow-x:hidden}
+#fx{position:fixed;inset:0;pointer-events:none;z-index:50}
+.note{display:block;margin-top:14px;padding:8px 12px;border-left:3px solid var(--mint);background:rgba(143,211,196,.1);color:var(--mute);font-size:.82rem;border-radius:0 10px 10px 0}
+.note b{color:var(--mint);font-weight:500}
+/* HERO */
+#hero{min-height:100vh;position:relative;display:flex;flex-direction:column;align-items:center;padding:0 20px 40px;overflow:hidden}
+.lamp{position:relative;width:200px;display:flex;flex-direction:column;align-items:center;z-index:3}
+.wire{width:2px;height:36px;background:#6d808a}
+.shade{width:150px;height:78px;background:linear-gradient(#3a5663,#2a4350);clip-path:polygon(30% 0,70% 0,100% 100%,0 100%);transition:.6s}
+body.on .shade{background:linear-gradient(#f5dba0,#d9b36a)}
+.bulb{width:34px;height:16px;margin-top:-6px;border-radius:0 0 40px 40px;background:#51656f;transition:.6s}
+body.on .bulb{background:var(--glow);box-shadow:0 0 30px 10px rgba(255,226,163,.5)}
+.pull{position:absolute;top:60px;right:26px;display:flex;flex-direction:column;align-items:center;touch-action:none;cursor:grab}
+.cord{width:2px;height:70px;background:#c9d4d9}
+.bead{width:22px;height:22px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff3cf,#c99b4a);box-shadow:0 0 12px rgba(255,226,163,.55);animation:bob 2s infinite}
+body.on .bead{animation:none}
+@keyframes bob{50%{transform:translateY(5px)}}
+.cone{position:absolute;top:100px;left:50%;width:min(560px,130vw);height:75vh;transform:translateX(-50%);clip-path:polygon(44% 0,56% 0,100% 100%,0 100%);background:linear-gradient(rgba(255,226,163,.26),rgba(255,226,163,.03) 85%,transparent);opacity:0;transition:opacity 1s;pointer-events:none}
+body.on .cone{opacity:1}
+.hint{margin-top:26px;color:var(--mute);text-align:center;transition:.5s;z-index:3}
+body.on .hint{opacity:0;height:0;margin:0;overflow:hidden}
+.reveal{text-align:center;z-index:3;opacity:0;transform:translateY(30px);transition:1s .35s;margin-top:34px;pointer-events:none}
+body.on .reveal{opacity:1;transform:none;pointer-events:auto}
+.reveal small{color:var(--glow);letter-spacing:.25em;font-size:.8rem}
+.reveal h1{font-weight:500;font-size:clamp(2rem,9vw,3.4rem);line-height:1.25;margin:6px 0 10px}
+.reveal p{color:var(--mute);max-width:420px;margin:0 auto 20px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;max-width:460px;margin:0 auto}
+.chips a{color:var(--ink);text-decoration:none;padding:9px 18px;border-radius:99px;border:1px solid rgba(255,226,163,.4);background:rgba(255,226,163,.08);font-weight:400;transition:.3s}
+.chips a:active,.chips a:hover{background:rgba(255,226,163,.22);box-shadow:0 0 18px rgba(255,226,163,.3)}
+.scrollhint{margin-top:26px;color:var(--mute);font-size:.85rem;animation:bob 2s infinite}
+main{display:none}
+body.on main{display:block;animation:fade 1s}
+@keyframes fade{from{opacity:0}}
+section{padding:70px 20px 30px;max-width:760px;margin:0 auto}
+section h2{font-weight:500;font-size:1.7rem;line-height:1.3}
+section .sub{color:var(--mute);margin:4px 0 22px}
+/* WEAPON-STYLE SERVICES */
+.deck{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:10px 6vw 18px;margin:0 -20px;scrollbar-width:none}
+.deck::-webkit-scrollbar{display:none}
+.slot{flex:0 0 78%;max-width:300px;scroll-snap-align:center;background:linear-gradient(160deg,var(--card),#1a2f3a);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:20px;opacity:.55;transform:scale(.93);transition:.4s}
+.slot.act{opacity:1;transform:none;border-color:rgba(255,226,163,.55);box-shadow:0 0 28px rgba(255,226,163,.16)}
+.slot .ic{font-size:2.4rem}
+.slot h3{font-weight:500;font-size:1.2rem}
+.slot p{color:var(--mute);font-size:.9rem;margin:4px 0 12px}
+.stat{display:flex;align-items:center;gap:8px;font-size:.78rem;color:var(--mute);margin:5px 0}
+.stat span{width:78px}
+.stat i{flex:1;height:7px;border-radius:9px;background:rgba(255,255,255,.1);overflow:hidden}
+.stat i::after{content:"";display:block;height:100%;width:0;border-radius:9px;background:linear-gradient(90deg,var(--mint),var(--glow));transition:width 1s .2s}
+.slot.act .stat i::after{width:var(--v)}
+.arrows{display:flex;gap:12px;justify-content:center}
+.arrows button{width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,226,163,.45);background:rgba(255,226,163,.08);color:var(--glow);font-size:1.2rem;cursor:pointer;font-family:inherit}
+/* PROBLEMS */
+details{background:var(--card);border-radius:16px;margin:10px 0;padding:0 18px;border:1px solid rgba(255,255,255,.06)}
+summary{padding:15px 0;font-weight:400;cursor:pointer;list-style:none;display:flex;justify-content:space-between}
+summary::after{content:"+";color:var(--glow);font-size:1.3rem;line-height:1}
+details[open] summary::after{content:"–"}
+details[open]{border-color:rgba(255,226,163,.4)}
+details div{padding:0 0 16px;color:var(--mute)}
+details b{color:var(--mint);font-weight:500}
+/* MAP */
+.map{position:relative;height:230px;border-radius:20px;overflow:hidden;background:#1f3844;border:1px solid rgba(255,255,255,.08);background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:38px 38px}
+.map::before{content:"";position:absolute;left:-10%;top:55%;width:120%;height:26px;background:#2c4a58;transform:rotate(-8deg)}
+.map::after{content:"";position:absolute;left:38%;top:-10%;width:22px;height:120%;background:#2c4a58;transform:rotate(14deg)}
+.pin{position:absolute;left:50%;top:42%;font-size:2.4rem;z-index:2;transform:translate(-50%,-50%);filter:drop-shadow(0 0 12px rgba(255,226,163,.7));animation:bob 2s infinite}
+.mapinfo{margin-top:12px;color:var(--mute)}
+/* CTA */
+.cta{text-align:center;margin:40px 0 0;padding:34px 20px;border-radius:24px;background:radial-gradient(circle at 50% 0,rgba(255,226,163,.18),transparent 70%),var(--card);border:1px solid rgba(255,226,163,.3)}
+.cta h2{font-size:1.5rem}
+.cta p{color:var(--mute);margin:8px 0 20px}
+.linebtn{display:inline-flex;align-items:center;gap:10px;padding:16px 34px;border-radius:99px;border:0;background:var(--line);color:#fff;font:500 1.2rem 'Kanit',sans-serif;cursor:pointer;box-shadow:0 0 0 6px rgba(6,199,85,.2),0 8px 26px rgba(6,199,85,.35);text-decoration:none;animation:pulse 2.4s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 12px rgba(6,199,85,.08),0 8px 26px rgba(6,199,85,.35)}}
+.id{margin-top:14px;color:var(--glow);font-weight:400}
+footer{text-align:center;color:var(--mute);font-size:.8rem;padding:40px 20px 110px}
+/* CHAT */
+#bot{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:40;display:none}
+body.on #bot{display:block}
+#botBtn{width:58px;height:58px;border-radius:50%;border:2px solid var(--glow);background:var(--bg2);font-size:1.6rem;cursor:pointer;box-shadow:0 0 18px rgba(255,226,163,.35)}
+#panel{position:absolute;right:0;bottom:70px;width:min(310px,86vw);background:var(--bg2);border:1px solid rgba(255,226,163,.35);border-radius:18px;padding:14px;display:none}
+#panel.open{display:block}
+#panel h4{font-weight:500;font-size:1rem}
+#msgs{max-height:170px;overflow:auto;margin:8px 0;font-size:.88rem}
+.m{padding:7px 11px;border-radius:12px;margin:5px 0;width:fit-content;max-width:90%}
+.me{background:rgba(255,226,163,.2);margin-left:auto}
+.sys{background:rgba(143,211,196,.15);color:var(--mute)}
+#panel form{display:flex;gap:6px}
+#panel input{flex:1;min-width:0;padding:9px 12px;border-radius:99px;border:1px solid rgba(255,255,255,.2);background:var(--bg);color:var(--ink);font:inherit;font-size:.9rem}
+#panel button.s{border:0;border-radius:99px;padding:0 14px;background:var(--glow);color:#3a2c0c;font:500 .9rem 'Kanit';cursor:pointer}
+/* MODAL */
+#modal{position:fixed;inset:0;z-index:60;background:rgba(5,12,16,.72);display:none;align-items:center;justify-content:center;padding:24px}
+#modal.open{display:flex}
+.box{background:var(--bg2);border:1px solid rgba(255,226,163,.4);border-radius:22px;padding:26px 22px;max-width:360px;text-align:center}
+.box h3{font-weight:500;font-size:1.3rem}
+.box p{color:var(--mute);margin:8px 0 20px}
+.box .row{display:flex;gap:10px;flex-direction:column}
+.box .ghost{padding:12px;border-radius:99px;border:1px solid rgba(255,255,255,.25);background:none;color:var(--mute);font:inherit;cursor:pointer}
+.box .linebtn{justify-content:center;font-size:1.05rem;padding:14px;animation:none}
+.box{width:100%;max-height:88vh;overflow:auto}
+.step[hidden]{display:none}
+.opt{padding:13px;border-radius:99px;border:1px solid rgba(255,226,163,.5);background:rgba(255,226,163,.08);color:var(--glow);font:400 1rem 'Kanit',sans-serif;cursor:pointer}
+.styles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
+.sty{padding:12px 8px;border-radius:14px;border:1px solid rgba(255,255,255,.15);background:var(--card);color:var(--mute);font:300 .82rem 'Kanit',sans-serif;cursor:pointer;line-height:1.35}
+.sty b{display:block;color:var(--ink);font-weight:500;font-size:.95rem}
+.sty.sel{border-color:var(--glow);box-shadow:0 0 16px rgba(255,226,163,.3);background:#2b4755}
+.box label{display:block;text-align:left;font-size:.85rem;color:var(--mute);margin-bottom:10px}
+.box label input,.box label textarea{display:block;width:100%;margin-top:4px;padding:10px 12px;border-radius:12px;border:1px solid rgba(255,255,255,.2);background:var(--bg);color:var(--ink);font:300 .95rem 'Kanit',sans-serif}
+.box textarea{min-height:76px;resize:vertical}
+.tiny{font-size:.8rem;margin:12px 0 0!important;white-space:pre-wrap;text-align:left}
+</style>
+</head>
+<body>
+<canvas id="fx"></canvas>
+
+<header id="hero">
+  <div class="lamp">
+    <div class="wire"></div><div class="shade"></div><div class="bulb"></div>
+    <div class="pull" id="pull"><div class="cord" id="cord"></div><div class="bead"></div></div>
+  </div>
+  <div class="cone"></div>
+  <p class="hint">ดึงสายไฟลงเพื่อเปิดโคมไฟ<br><small>(แตะที่เม็ดไข่มุกก็ได้)</small></p>
+  <div class="reveal">
+    <small>SMILE LAB DENTAL</small>
+    <h1>ยิ้มสบายใจ<br>ได้ทุกวัย</h1>
+    <p>คลินิกทันตกรรมอบอุ่น ดูแลตั้งแต่เด็กเล็กถึงผู้สูงวัย</p>
+    <nav class="chips">
+      <a href="#services">บริการของเรา</a><a href="#problems">ปัญหาที่พบบ่อย</a><a href="#map">แผนที่</a><a href="#contact">ติดต่อ</a>
+    </nav>
+    <span class="note"><b>📝 ส่วนนี้ทำอะไร:</b> โคมไฟเปิด-ปิดด้วยการดึงสาย เปิดแล้วหัวข้อต่างๆ ค่อยๆ สว่างขึ้น สร้างความประทับใจแรกให้ลูกค้า</span>
+    <div class="scrollhint">เลื่อนลงเพื่อดูต่อ ↓</div>
+  </div>
+</header>
+
+<main>
+<section id="services">
+  <h2>เลือกบริการของคุณ</h2>
+  <p class="sub">เลื่อนซ้าย-ขวา เหมือนเลือกอุปกรณ์ในเกม</p>
+  <div class="deck" id="deck">
+    <article class="slot"><div class="ic">🦷</div><h3>ตรวจและขูดหินปูน</h3><p>ตรวจสุขภาพช่องปากพื้นฐาน (ข้อมูลจำลอง)</p>
+      <div class="stat"><span>ความสบาย</span><i style="--v:90%"></i></div><div class="stat"><span>ความเร็ว</span><i style="--v:85%"></i></div><div class="stat"><span>ความคงทน</span><i style="--v:60%"></i></div></article>
+    <article class="slot"><div class="ic">✨</div><h3>ฟอกสีฟัน</h3><p>ฟันขาวสดใสอย่างเป็นธรรมชาติ (ข้อมูลจำลอง)</p>
+      <div class="stat"><span>ความสบาย</span><i style="--v:75%"></i></div><div class="stat"><span>ความเร็ว</span><i style="--v:70%"></i></div><div class="stat"><span>ความคงทน</span><i style="--v:65%"></i></div></article>
+    <article class="slot"><div class="ic">😁</div><h3>จัดฟัน</h3><p>ทั้งแบบโลหะและแบบใส (ข้อมูลจำลอง)</p>
+      <div class="stat"><span>ความสบาย</span><i style="--v:60%"></i></div><div class="stat"><span>ความเร็ว</span><i style="--v:35%"></i></div><div class="stat"><span>ความคงทน</span><i style="--v:95%"></i></div></article>
+    <article class="slot"><div class="ic">🧒</div><h3>ทันตกรรมเด็ก</h3><p>ห้องตรวจเป็นมิตร ไม่น่ากลัว (ข้อมูลจำลอง)</p>
+      <div class="stat"><span>ความสบาย</span><i style="--v:98%"></i></div><div class="stat"><span>ความเร็ว</span><i style="--v:80%"></i></div><div class="stat"><span>ความคงทน</span><i style="--v:70%"></i></div></article>
+    <article class="slot"><div class="ic">🔩</div><h3>รากฟันเทียม</h3><p>ทดแทนฟันที่สูญเสีย (ข้อมูลจำลอง)</p>
+      <div class="stat"><span>ความสบาย</span><i style="--v:55%"></i></div><div class="stat"><span>ความเร็ว</span><i style="--v:25%"></i></div><div class="stat"><span>ความคงทน</span><i style="--v:100%"></i></div></article>
+  </div>
+  <div class="arrows"><button id="prev" aria-label="ก่อนหน้า">←</button><button id="next" aria-label="ถัดไป">→</button></div>
+  <span class="note"><b>📝 ส่วนนี้ทำอะไร:</b> การ์ดบริการสไตล์เลือกอาวุธในเกม เลื่อนด้วยนิ้วหรือกดลูกศร การ์ดที่เลือกจะเรืองแสงและแถบค่าต่างๆ จะวิ่งขึ้น ช่วยให้ลูกค้าเปรียบเทียบบริการได้สนุกและเข้าใจง่าย</span>
+</section>
+
+<section id="problems">
+  <h2>ปัญหาที่พบบ่อย</h2>
+  <p class="sub">แตะเพื่อดูวิธีแก้ (ข้อมูลจำลอง)</p>
+  <details><summary>🍬 ฟันผุ</summary><div><b>สาเหตุ:</b> คราบแบคทีเรียสะสมจากน้ำตาล<br><b>วิธีแก้:</b> อุดฟันตั้งแต่เริ่มผุ และแปรงฟันหลังอาหารด้วยยาสีฟันฟลูออไรด์</div></details>
+  <details><summary>🧊 เสียวฟัน</summary><div><b>สาเหตุ:</b> เคลือบฟันบางหรือเหงือกร่น<br><b>วิธีแก้:</b> ใช้ยาสีฟันสูตรลดเสียว และพบทันตแพทย์เพื่อตรวจหาสาเหตุ</div></details>
+  <details><summary>🩸 เหงือกบวมเลือดออก</summary><div><b>สาเหตุ:</b> หินปูนและการอักเสบ<br><b>วิธีแก้:</b> ขูดหินปูนทุก 6 เดือน และใช้ไหมขัดฟันเป็นประจำ</div></details>
+  <details><summary>☕ ฟันเหลือง</summary><div><b>สาเหตุ:</b> คราบชา กาแฟ บุหรี่<br><b>วิธีแก้:</b> ขัดคราบ หรือฟอกสีฟันภายใต้การดูแลของทันตแพทย์</div></details>
+  <span class="note"><b>📝 ส่วนนี้ทำอะไร:</b> ตอบคำถามยอดฮิตให้ลูกค้าก่อนโทรถาม ลดภาระพนักงาน และสร้างความน่าเชื่อถือ</span>
+</section>
+
+<section id="map">
+  <h2>แผนที่คลินิก</h2>
+  <p class="sub">แผนที่จำลอง</p>
+  <div class="map"><div class="pin">📍</div></div>
+  <p class="mapinfo">123 ถนนตัวอย่าง เขตจำลอง กรุงเทพฯ<br>เปิดทุกวัน 09:00–20:00 น. · โทร 02-000-0000</p>
+  <span class="note"><b>📝 ส่วนนี้ทำอะไร:</b> ของจริงจะฝัง Google Maps พร้อมปุ่มนำทางและเวลาเปิด-ปิด</span>
+</section>
+
+<section id="contact">
+  <div class="cta">
+    <h2>สนใจเว็บแบบนี้สำหรับคลินิกของคุณ?</h2>
+    <p>ทักไลน์มาคุยกันได้เลย ยินดีออกแบบให้เข้ากับแบรนด์ของคุณโดยเฉพาะ</p>
+    <button class="linebtn" id="openModal">💬 สนใจแบบนี้ คุยกันเลย</button>
+    <div class="id">LINE OA: @257vttfu</div>
+    <span class="note" style="text-align:left"><b>📝 ส่วนนี้ทำอะไร:</b> กดแล้วลูกค้าเลือกได้ว่าจะคุยไลน์เลย, กรอกรายละเอียดที่อยากได้ (ชื่อร้าน สี สไตล์) หรือขอดูแบบอื่นก่อน แล้วระบบเตรียมข้อความให้ส่งทางไลน์</span>
+  </div>
+</section>
+<footer>เว็บตัวอย่างเพื่อจำลองโครงสร้าง · เนื้อหาทั้งหมดเป็นข้อมูลสมมติ</footer>
+</main>
+
+<div id="bot">
+  <div id="panel">
+    <h4>🦷 น้องหมอฟัน AI (จำลอง)</h4>
+    <div id="msgs"><div class="m sys">สวัสดีครับ ถามเรื่องฟันได้เลย</div></div>
+    <form id="chat"><input id="q" placeholder="พิมพ์คำถามที่นี่…" autocomplete="off"><button class="s">ส่ง</button></form>
+    <span class="note"><b>📝 ทำอะไร:</b> ของจริงจะเชื่อม AI ตอบคำถามลูกค้า 24 ชม. และช่วยนัดหมาย</span>
+  </div>
+  <button id="botBtn" aria-label="แชทกับน้องหมอ">🦷</button>
+</div>
+
+<div id="modal">
+  <div class="box">
+    <div class="step" id="s1" style="text-align:center">
+      <h3>ถูกใจเว็บแนวนี้ไหมครับ?</h3>
+      <p>เลือกได้เลยว่าอยากไปต่อทางไหน</p>
+      <div class="row">
+        <a class="linebtn" id="yes" href="https://lin.ee/XbYIETq" target="_blank" rel="noopener">💛 ถูกใจ คุยต่อทางไลน์เลย</a>
+        <button class="opt" id="goForm">✏️ ขอบอกรายละเอียดที่อยากได้</button>
+        <button class="opt" id="goStyle">🎨 อยากดูแบบอื่นก่อน</button>
+        <button class="ghost" data-close>ขอคิดดูก่อน</button>
+      </div>
+    </div>
+    <div class="step" id="s2" hidden style="text-align:center">
+      <h3>เลือกบรรยากาศที่ใช่</h3>
+      <p>แตะเลือกได้ 1 แบบ</p>
+      <div class="styles">
+        <button class="sty" data-v="อบอุ่นแบบโคมไฟ"><b>🕯️ อบอุ่นโคมไฟ</b>แบบที่เห็นอยู่นี้</button>
+        <button class="sty" data-v="มินิมอลสะอาด"><b>🤍 มินิมอล</b>สะอาด โปร่งตา</button>
+        <button class="sty" data-v="ธรรมชาติผ่อนคลาย"><b>🌿 ธรรมชาติ</b>เขียวนุ่ม ผ่อนคลาย</button>
+        <button class="sty" data-v="สดใสเป็นมิตร (ครอบครัวและเด็ก)"><b>🧸 สดใสเป็นมิตร</b>เหมาะครอบครัว-เด็ก</button>
+        <button class="sty" data-v="พรีเมียมหรูหรา"><b>💎 พรีเมียม</b>หรู ดูมีระดับ</button>
+        <button class="sty" data-v="ทันสมัยไฮเทค"><b>🔬 ทันสมัย</b>ไฮเทค น่าเชื่อถือ</button>
+        <button class="sty" data-v="พาสเทลนุ่มนวล"><b>🌸 พาสเทล</b>นุ่มนวล อ่อนโยน</button>
+        <button class="sty" data-v="มีแบบในใจ (จะส่งตัวอย่างให้)"><b>✍️ มีแบบในใจ</b>ส่งตัวอย่างให้ผมได้</button>
+      </div>
+      <div class="row">
+        <button class="opt" id="toForm">ต่อไป: บอกรายละเอียด →</button>
+        <button class="ghost" data-back>← ย้อนกลับ</button>
+      </div>
+    </div>
+    <div class="step" id="s3" hidden>
+      <h3 style="text-align:center">เล่าให้ผมฟังหน่อยครับ</h3>
+      <p style="text-align:center">กรอกเท่าที่สะดวก ไม่ต้องครบก็ได้</p>
+      <label>ชื่อคลินิก<input id="fn" placeholder="เช่น คลินิกฟันยิ้มสวย"></label>
+      <label>สีประจำร้าน<input id="fc" placeholder="เช่น ฟ้าพาสเทล, เขียวมินต์ หรือสีตามโลโก้"></label>
+      <label>แบบที่อยากได้<input id="fs" placeholder="เลือกจากหน้าแบบ หรือพิมพ์เองได้"></label>
+      <label>อยากให้มีอะไรบ้าง<textarea id="fd" placeholder="เช่น ราคาค่าบริการ, รีวิวคนไข้, ปุ่มจองคิว, สองภาษา"></textarea></label>
+      <div class="row">
+        <button class="linebtn" id="send">📨 ส่งรายละเอียดให้ผมทางไลน์</button>
+        <button class="ghost" data-back>← ย้อนกลับ</button>
+      </div>
+      <p class="tiny" id="tip"></p>
+    </div>
+  </div>
+</div>
+
+<script>
+const $=s=>document.querySelector(s),B=document.body;
+/* lamp */
+const pull=$('#pull'),cord=$('#cord');let y0=null,dy=0;
+const toggle=()=>{B.classList.toggle('on');if(B.classList.contains('on'))setTimeout(()=>$('.reveal').scrollIntoView({behavior:'smooth',block:'center'}),400);};
+pull.addEventListener('pointerdown',e=>{y0=e.clientY;pull.setPointerCapture(e.pointerId)});
+pull.addEventListener('pointermove',e=>{if(y0===null)return;dy=Math.max(0,Math.min(70,e.clientY-y0));cord.style.height=70+dy+'px'});
+const rel=()=>{if(y0===null)return;const t=dy>35||dy<4;y0=null;cord.style.transition='height .3s';cord.style.height='70px';setTimeout(()=>cord.style.transition='',320);if(t)toggle();dy=0};
+pull.addEventListener('pointerup',rel);pull.addEventListener('pointercancel',()=>{y0=null;cord.style.height='70px'});
+/* deck */
+const deck=$('#deck'),slots=[...document.querySelectorAll('.slot')];
+const mark=()=>{const c=deck.scrollLeft+deck.clientWidth/2;let best=0,d=1e9;slots.forEach((s,i)=>{const m=Math.abs(s.offsetLeft+s.offsetWidth/2-c);if(m<d){d=m;best=i}});slots.forEach((s,i)=>s.classList.toggle('act',i===best));deck.dataset.i=best};
+deck.addEventListener('scroll',mark,{passive:true});
+const go=n=>{const i=Math.max(0,Math.min(slots.length-1,+deck.dataset.i+n));deck.scrollTo({left:slots[i].offsetLeft-(deck.clientWidth-slots[i].offsetWidth)/2,behavior:'smooth'})};
+$('#prev').onclick=()=>go(-1);$('#next').onclick=()=>go(1);
+new MutationObserver(mark).observe(B,{attributes:true});setTimeout(mark,100);
+/* chat */
+$('#botBtn').onclick=()=>$('#panel').classList.toggle('open');
+$('#chat').onsubmit=e=>{e.preventDefault();const q=$('#q'),v=q.value.trim();if(!v)return;const M=$('#msgs');
+ M.insertAdjacentHTML('beforeend','<div class="m me"></div>');M.lastChild.textContent=v;q.value='';
+ setTimeout(()=>{M.insertAdjacentHTML('beforeend','<div class="m sys">นี่คือเวอร์ชันจำลอง ยังไม่มีคำตอบจาก AI ครับ 🙂</div>');M.scrollTop=M.scrollHeight},500)};
+/* modal */
+const mo=$('#modal'),LINE='https://lin.ee/XbYIETq';let chosen='';
+const show=id=>mo.querySelectorAll('.step').forEach(s=>s.hidden=s.id!==id);
+const closeM=()=>{mo.classList.remove('open');show('s1')};
+$('#openModal').onclick=()=>{show('s1');mo.classList.add('open')};
+mo.querySelectorAll('[data-close]').forEach(b=>b.onclick=closeM);
+mo.querySelectorAll('[data-back]').forEach(b=>b.onclick=()=>show('s1'));
+$('#yes').onclick=()=>setTimeout(closeM,300);
+$('#goStyle').onclick=()=>show('s2');$('#goForm').onclick=()=>show('s3');
+mo.querySelectorAll('.sty').forEach(b=>b.onclick=()=>{mo.querySelectorAll('.sty').forEach(x=>x.classList.remove('sel'));b.classList.add('sel');chosen=b.dataset.v});
+$('#toForm').onclick=()=>{if(chosen)$('#fs').value=chosen;show('s3')};
+$('#send').onclick=()=>{const t='สนใจทำเว็บคลินิกครับ\nชื่อคลินิก: '+($('#fn').value||'-')+'\nสีประจำร้าน: '+($('#fc').value||'-')+'\nแบบที่อยากได้: '+($('#fs').value||'-')+'\nอยากให้มี: '+($('#fd').value||'-');
+ let ok=false;try{navigator.clipboard.writeText(t);ok=true}catch(e){}
+ $('#tip').textContent=(ok?'คัดลอกข้อความแล้ว กด “วาง” ในแชทไลน์ได้เลยครับ\n\n':'ถ้าไลน์เปิดแล้ว ให้พิมพ์หรือวางข้อความนี้ครับ\n\n')+t;
+ window.open('https://line.me/R/oaMessage/%40257vttfu/?'+encodeURIComponent(t),'_blank')};
+mo.onclick=e=>{if(e.target===mo)closeM()};
+/* soft sparkles */
+const cv=$('#fx'),cx=cv.getContext('2d');let P=[];
+const rs=()=>{cv.width=innerWidth;cv.height=innerHeight};rs();addEventListener('resize',rs);
+const spark=(x,y,n)=>{for(let i=0;i<n;i++)P.push({x,y,vx:(Math.random()-.5)*1.2,vy:Math.random()*-1-.2,r:Math.random()*1.8+.8,l:1})};
+['pointermove','touchmove'].forEach(t=>addEventListener(t,e=>{const p=e.touches?e.touches[0]:e;spark(p.clientX,p.clientY,2)},{passive:true}));
+addEventListener('scroll',()=>spark(Math.random()*innerWidth,Math.random()*innerHeight,3),{passive:true});
+(function tick(){cx.clearRect(0,0,cv.width,cv.height);P=P.filter(p=>p.l>0);P.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.l-=.02;cx.globalAlpha=Math.max(p.l,0)*.55;cx.fillStyle='#ffe2a3';cx.shadowColor='#ffe2a3';cx.shadowBlur=8;cx.beginPath();cx.arc(p.x,p.y,p.r,0,7);cx.fill()});requestAnimationFrame(tick)})();
+</script>
+</body>
+</html>
